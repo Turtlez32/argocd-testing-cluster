@@ -47,7 +47,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`traefik.test.turtleware.au`)
+    - match: Host(`traefik-test.turtleware.au`)
       kind: Rule
       middlewares:
         - name: traefik-dashboard-basicauth
