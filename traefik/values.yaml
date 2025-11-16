@@ -15,10 +15,6 @@ deployment:
   initContainers: []
 
 ports:
-  web:
-    redirectTo:
-      port: websecure
-      priority: 10
   websecure:
     http3:
       enabled: true
@@ -50,6 +46,6 @@ service:
   annotations: {}
   labels: {}
   spec:
-    loadBalancerIP: 10.0.45.100
+    loadBalancerIP: 10.0.42.152
   loadBalancerSourceRanges: []
   externalIPs: []
