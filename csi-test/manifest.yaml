@@ -1,3 +1,4 @@
+# nfs-dynamic-test.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -6,11 +7,10 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: ""
+  storageClassName: truenas-nfs  # Use your existing StorageClass
   resources:
     requests:
       storage: 10Gi
-  volumeName: truenas-nfs
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,10 +34,11 @@ spec:
           - sh
           - -c
           - |
-            echo "Pod $(hostname) started at $(date)" >> /data/test.log
+            echo "Pod $(hostname) started at $(date)" | tee -a /data/test.log
             while true; do
-              echo "$(date) - $(hostname) - Writing to NFS" >> /data/test.log
-              cat /data/test.log
+              echo "$(date) - $(hostname) - NFS Test" | tee -a /data/test.log
+              echo "=== Last 5 entries ==="
+              tail -5 /data/test.log
               sleep 10
             done
         volumeMounts:
