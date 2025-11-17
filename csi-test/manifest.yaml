@@ -1,23 +1,3 @@
-# nfs-test-pv.yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: nfs-test-pv
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    server: YOUR_TRUENAS_IP
-    path: /mnt/YOUR_POOL/YOUR_DATASET
-  mountOptions:
-    - nfsvers=4.1
-    - hard
-    - timeo=600
-    - retrans=2
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -30,7 +10,7 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  volumeName: nfs-test-pv
+  volumeName: truenas-nfs
 ---
 apiVersion: apps/v1
 kind: Deployment
