@@ -4,6 +4,6 @@ metadata:
   name: truenas-nfs
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: 10.0.41.10
+  server: 10.0.40.168
   share: /mnt/BigSpeed/rke-test
   mountOptions: "nfsvers=4.1"
