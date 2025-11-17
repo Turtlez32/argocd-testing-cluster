@@ -46,7 +46,6 @@ metadata:
   name: nginx-website
   namespace: default
 spec:
-  type: ClusterIP
   selector:
     app: nginx-website
   ports:
@@ -67,5 +66,7 @@ spec:
     - match: Host(`nginx-test.turtleware.au`)
       kind: Rule
       services:
-        - name: api@internal
-          kind: nginx-website
+        - name: nginx-website
+          port: 80
+      middlewares:
+        - name: default-headers
