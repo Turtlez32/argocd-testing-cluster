@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: truenas-nfs
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: fs.turtleware.au
+  share: /mnt/BigSpeed/rke-test
+  mountOptions: "nfsvers=4.1,hard,timeo=600,retrans=2"
